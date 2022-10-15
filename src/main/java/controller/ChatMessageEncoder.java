@@ -1,6 +1,6 @@
 package controller;
 
-import jakarta.json.Json;
+import jakarta.json.bind.JsonbBuilder;
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.Encoder;
 import jakarta.websocket.EndpointConfig;
@@ -17,10 +17,6 @@ public class ChatMessageEncoder implements Encoder.Text<ChatMessage> {
 
     @Override
     public String encode(final ChatMessage chatMessage) throws EncodeException {
-        return Json.createObjectBuilder()
-                .add("message", chatMessage.getMessage())
-                .add("sender", chatMessage.getSender())
-                .add("received", chatMessage.getReceived().toString()).build()
-                .toString();
+        return JsonbBuilder.create().toJson(chatMessage);
     }
 }

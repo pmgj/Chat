@@ -14,7 +14,7 @@ function onMessageReceived(evt) {
     $chatWindow.append($messageLine);
 }
 function sendMessage() {
-    let msg = { message: $message.val(), sender: $nickName.val(), "received": "" };
+    let msg = { message: $message.val(), sender: $nickName.val() };
     wsocket.send(JSON.stringify(msg));
     $message.val('').focus();
 }
